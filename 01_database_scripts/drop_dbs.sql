@@ -1,0 +1,10 @@
+USE master
+GO
+DROP USER [TuRutaUN_admin]
+GO
+DROP DATABASE [TuRutaUN]
+GO
+DROP DATABASE [ExternalLoginDB]
+GO
+DROP LOGIN [TuRutaUN_admin]
+GO

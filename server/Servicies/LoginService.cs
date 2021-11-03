@@ -51,7 +51,7 @@ namespace TuRutaUN.Servicies
                 return null;
             
             if (!VerifyPasswordHash(authenticateRequest.Password, loginUser.PasswordHash, loginUser.PasswordSalt))
-                return null;
+                throw new AppException("The password is incorrect");
             //Delete passwords from login response and return 
             return loginUser.WithoutPassword();
         }

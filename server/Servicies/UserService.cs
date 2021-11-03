@@ -19,7 +19,7 @@ namespace TuRutaUN.Servicies
 {
     public interface IUserService
     {
-       Task<AuthenticateResponse> Authenticate(User userToSearch);
+       Task<AuthenticateResponse> Authenticate(Models.LoginUser.AuthenticateRequest authenticateRequest);
         Task<User> Register(RegisterRequest registerRequest);
         Task<IEnumerable<User>> GetAll();
         Task<User> GetById(string userId);
@@ -34,24 +34,32 @@ namespace TuRutaUN.Servicies
         private readonly TuRutaUNContext _context;
         private readonly IMapper _mapper;
         private readonly AppSettigns _appSettings;
+        private readonly ILoginService _loginService;
 
-        public UserService(TuRutaUNContext context, IMapper mapper, IOptions<AppSettigns> appSettings)
+        public UserService(TuRutaUNContext context, IMapper mapper, IOptions<AppSettigns> appSettings, ILoginService loginService)
         {
             //Assign arguments to global readonly variables
             _context = context;
             _mapper = mapper;
             _appSettings = appSettings.Value;
+            _loginService = loginService;
         }
 
         #region Public methods
 
-        public async Task<AuthenticateResponse> Authenticate(User userToFind)
+        public async Task<AuthenticateResponse> Authenticate(Models.LoginUser.AuthenticateRequest authenticateRequest)
         {
+            var loginUser = await _loginService.Authenticate(authenticateRequest);
+            if (loginUser == null) 
+                throw new AppException("The user is not UN student");
+
+            var userToFind = _mapper.Map<User>(loginUser);
+
             //Search user in database with email filter
             var userFinded = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userToFind.UserId);
 
             if (userFinded == null)
-                return null;
+                throw new AppException("The user is not registered in the app");
 
             //Create a authentication response and generate token to add in the instance to return.
             var authenticateResponse = new AuthenticateResponse(userFinded, GenerateToken(userFinded));
@@ -62,7 +70,14 @@ namespace TuRutaUN.Servicies
         ////////////////////////////////////////////////////////////////////////////////
         public async Task<User> Register(RegisterRequest registerRequest)
         {
+            var userInLoginDB = await _loginService.GetById(registerRequest.UserId);
+
+            if (userInLoginDB == null)
+                throw new AppException("The user is not UN student");
+
             var userToRegister = _mapper.Map<User>(registerRequest);
+
+            userToRegister.Email = userInLoginDB.Username+"@unal.edu.co";
 
             if (await GetById(userToRegister.UserId) != null)
                 throw new AppException("The user is already registered");

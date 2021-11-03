@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:32057",
-      "sslPort": 44300
+      "applicationUrl": "http://localhost:41356",
+      "sslPort": 44359
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "TuRutaUNAPI": {
+    "TuRutaUN": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

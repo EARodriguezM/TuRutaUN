@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace TuRutaUNAPI.Controllers
+namespace TuRutaUN.Controllers
 {
     [ApiController]
     [Route("[controller]")]

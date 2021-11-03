@@ -1,6 +1,6 @@
 using System;
 
-namespace TuRutaUNAPI
+namespace TuRutaUN
 {
     public class WeatherForecast
     {

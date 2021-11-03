@@ -10,7 +10,7 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [login_user](
-	[login_user_id] TINYINT NOT NULL,
+	[login_user_id] NVARCHAR(10) NOT NULL,
 	[username] NVARCHAR(20) NOT NULL,
     [password_hash] VARBINARY(128) NULL,
     [password_salt] VARBINARY(128) NULL,

@@ -6,7 +6,7 @@ namespace TuRutaUN.Models.User
     {
         [Required]
         [StringLength(10, MinimumLength = 6, ErrorMessage = "ID must be at least 6 characters")]
-        public string DataUserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "First name must be at least 2 characters")]

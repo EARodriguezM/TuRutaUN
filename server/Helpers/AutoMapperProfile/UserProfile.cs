@@ -10,7 +10,7 @@ namespace TuRutaUN.Helpers.AutoMapperProfile
         public UserProfile()
         {    
             CreateMap<RegisterRequest, User>()
-                .ForMember(dest => dest.UserId, src => src.MapFrom(src => src.DataUserId))
+                .ForMember(dest => dest.UserId, src => src.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.FirstName, src => src.MapFrom(src => src.FirstName))
                 .ForMember(dest => dest.SecondName, src => src.MapFrom(src => src.SecondName))
                 .ForMember(dest => dest.FirstSurname, src => src.MapFrom(src => src.FirstSurname))

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace TuRutaUNAPI.Entities.Login
+namespace TuRutaUN.Entities.Login
 {
     public partial class ExternalLoginDBContext : DbContext
     {
@@ -38,7 +38,9 @@ namespace TuRutaUNAPI.Entities.Login
                 entity.HasIndex(e => e.Username, "login_user_username_uk")
                     .IsUnique();
 
-                entity.Property(e => e.LoginUserId).HasColumnName("login_user_id");
+                entity.Property(e => e.LoginUserId)
+                    .HasMaxLength(10)
+                    .HasColumnName("login_user_id");
 
                 entity.Property(e => e.LastUpdate)
                     .HasColumnType("smalldatetime")

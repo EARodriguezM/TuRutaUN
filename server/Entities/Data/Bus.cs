@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace TuRutaUNAPI.Entities.Data
+namespace TuRutaUN.Entities.Data
 {
-    public partial class Bu
+    public partial class Bus
     {
-        public Bu()
+        public Bus()
         {
             RouteAssigments = new HashSet<RouteAssigment>();
         }

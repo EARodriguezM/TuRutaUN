@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace TuRutaUNAPI.Entities.Data
+namespace TuRutaUN.Entities.Data
 {
     public partial class TuRutaUNContext : DbContext
     {
@@ -17,7 +17,7 @@ namespace TuRutaUNAPI.Entities.Data
         {
         }
 
-        public virtual DbSet<Bu> buses { get; set; }
+        public virtual DbSet<Bus> buses { get; set; }
         public virtual DbSet<Driver> Drivers { get; set; }
         public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<Path> Paths { get; set; }
@@ -39,7 +39,7 @@ namespace TuRutaUNAPI.Entities.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<Bu>(entity =>
+            modelBuilder.Entity<Bus>(entity =>
             {
                 entity.HasKey(e => e.BusPlate)
                     .HasName("bus_pk");

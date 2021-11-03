@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace TuRutaUNAPI.Entities.Data
+namespace TuRutaUN.Entities.Data
 {
     public partial class RouteAssigment
     {
@@ -13,7 +13,7 @@ namespace TuRutaUNAPI.Entities.Data
         public bool? Status { get; set; }
         public DateTime? LastUpdate { get; set; }
 
-        public virtual Bu BusPlateNavigation { get; set; }
+        public virtual Bus BusPlateNavigation { get; set; }
         public virtual Map Map { get; set; }
     }
 }
